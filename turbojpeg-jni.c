@@ -1172,10 +1172,10 @@ bailout:
     }
     free(dstBufs);
   }
-  if (jpegBuf) (*env)->ReleasePrimitiveArrayCritical(env, jsrcBuf, jpegBuf, 0);
-  if (jdstBufs) free(jdstBufs);
-  if (dstSizes) free(dstSizes);
-  if (t) free(t);
+  SAFE_RELEASE(jsrcBuf, jpegBuf);
+  free(jdstBufs);
+  free(dstSizes);
+  free(t);
   return jdstSizes;
 }
 
